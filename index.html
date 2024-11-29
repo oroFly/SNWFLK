@@ -20,22 +20,51 @@
     <div class="image">
         <img id="sw" src="images/snowflake.png" alt="Snowflake emoji" title="I am thinking about you">
     </div>
-
-    <script>
-        async function fetchCounter() {
-            const response = await fetch('/api/counter');
-            const data = await response.json();
-            document.getElementById('counter').textContent = data.counter;
+    <script type="module">
+      // Import necessary functions from Firebase SDK
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+      // Optional: Analytics if you want to track page analytics
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCKOEKVHSE-Fn8iED1KqeDY5EW9KksKrrA",
+        authDomain: "snflk-3629b.firebaseapp.com",
+        projectId: "snflk-3629b",
+        storageBucket: "snflk-3629b.firebasestorage.app",
+        messagingSenderId: "595176788623",
+        appId: "1:595176788623:web:ee58f26ba8e57a224396fa",
+        measurementId: "G-2WR6WNLC00"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      
+      // Initialize Firestore
+      const db = getFirestore(app);
+      // Optional: Initialize Analytics
+      const analytics = getAnalytics(app);
+    
+      // Example function to save a counter to Firestore
+      async function updateCounter(counter) {
+        const counterRef = doc(db, "counters", "counter1"); // Create a document reference
+        await setDoc(counterRef, { value: counter });
+      }
+    
+      // Example function to get the counter from Firestore
+      async function getCounter() {
+        const counterRef = doc(db, "counters", "counter1");
+        const docSnap = await getDoc(counterRef);
+        
+        if (docSnap.exists()) {
+          console.log("Current counter value:", docSnap.data().value);
+          return docSnap.data().value;
+        } else {
+          console.log("No such document!");
+          return 0; // Default to 0 if not found
         }
-
-        async function increaseCounter() {
-            const response = await fetch('/api/counter', { method: 'POST' });
-            const data = await response.json();
-            document.getElementById('counter').textContent = data.counter;
-        }
-
-        // Load the initial counter when the page loads
-        fetchCounter();
+      }
     </script>
 </body>
 </html>
