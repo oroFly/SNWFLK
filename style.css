@@ -34,7 +34,7 @@ h1 {
 #sw {
     
     margin-top: 20px;  /* Space between h1 and image */
-    transform: translate(calc(10vw),calc(-5vw));  /* Moves the image to the left by 10% of the viewport width */
+    transform: translate(calc(10vw),calc(10vw));  /* Moves the image to the left by 10% of the viewport width */
     height: 150px;
     
 }
