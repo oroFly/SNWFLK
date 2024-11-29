@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>snowflakeCounter(orofly)</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="text">
-        <h1>SNFLK</h1>
-    </div>
-    <div>
-        <!-- Display the current counter -->
-        <p><span id="counter">0</span></p>
-    
-        <!-- Button to increase the counter -->
-        <button onclick="increaseCounter()">
-        </button>
-    
-        <script>
-        // Initialize counter variable
-        let counter = 0;
-        // Function to increase counter when the button is clicked
-        function increaseCounter() {
-        counter++;  // Increase counter by 1
-        document.getElementById("counter").textContent = counter; // Update the displayed counter
-    }
-    </script>
-    </div>
-    
-    <div class="image">
-    <!-- alt is used for ppl who need a screen reader so give a good description to let them know what is seen here even tho for this page it isnt needed titel is used to create a little pop up if hovered over with a mouse -->
-    <img id="sw" src="/images/snowflake.png" alt="this is a picture of a snowflake emoji" title="I am thinking about you">
-    </div>
-</body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>snowflakeCounter(orofly)</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="text">
+            <h1>SNFLK</h1>
+        </div>
+        <div>
+            <!-- Display the current counter -->
+            <p><span id="counter">0</span></p>
+        
+            <!-- Button to increase the counter -->
+            <button onclick="increaseCounter()">
+            </button>
+        
+            <script>
+            // Initialize counter variable
+            let counter = 0;
+            // Function to increase counter when the button is clicked
+            function increaseCounter() {
+            counter++;  // Increase counter by 1
+            document.getElementById("counter").textContent = counter; // Update the displayed counter
+        }
+        </script>
+        </div>
+        <div class="image">
+            <img id="sw" src="images/snowflake.png" alt="this is a picture of a snowflake emoji" title="I am thinking about you">
+        </div>
+    </body>
 
 </html>
