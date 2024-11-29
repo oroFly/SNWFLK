@@ -34,7 +34,7 @@ h1 {
 #sw {
     
     margin-top: 20px;  /* Space between h1 and image */
-    transform: translate(calc(10vw),calc(3vw));  /* Moves the image to the left by 10% of the viewport width */
+    transform: translate(calc(10vw),calc(-5vw));  /* Moves the image to the left by 10% of the viewport width */
     height: 150px;
     
 }
@@ -42,7 +42,7 @@ h1 {
 #counter {
     margin-top: 20px;  /* Space between h1 and image */
     transform: translate(calc(25vw),calc(20vw));  /* Moves the image to the left by 10% of the viewport width */
-    font-size: 15em; /* Larger font size */
+    font-size: 12em; /* Larger font size */
     color: #94C6F8; /* Orange color */
     font-family: 'Quantico', sans-serif; /* Font family */
     font-weight: bold; /* Make text bold */
