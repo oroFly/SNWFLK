@@ -52,33 +52,38 @@
         const counterRef = doc(db, "counters", "counter1");
         const docSnap = await getDoc(counterRef);
         
+      let counter = 0;
+
+      // Get the current counter from Firestore when the page loads
+      async function loadCounter() {
+        const counterRef = doc(db, "counters", "counter1");
+        const docSnap = await getDoc(counterRef);
+        
         if (docSnap.exists()) {
-          console.log("Current counter value:", docSnap.data().value);
-          document.getElementById("counter").textContent = docSnap.data().value; // Update UI with stored value
+          counter = docSnap.data().value;
         } else {
-          console.log("No such document! Setting to 0.");
-          document.getElementById("counter").textContent = 0; // Default to 0 if no value found
+          console.log("No such document, initializing counter.");
+          counter = 0; // Initialize if not found
         }
+
+        document.getElementById('counter').textContent = counter;
       }
 
-      // Function to update counter in Firestore
-      async function updateCounter(counter) {
+      // Function to increase the counter
+      async function increaseCounter() {
+        counter++;  // Increment counter
+
+        // Update Firestore with the new counter value
         const counterRef = doc(db, "counters", "counter1");
         await setDoc(counterRef, { value: counter });
+
+        // Update the UI with the new counter value
+        document.getElementById('counter').textContent = counter;
       }
 
-      // Function to increase counter on button click
-      async function increaseCounter() {
-        let currentCount = parseInt(document.getElementById("counter").textContent);
-        currentCount++;
-        document.getElementById("counter").textContent = currentCount; // Update the UI
-
-        // Save the updated counter to Firestore
-        await updateCounter(currentCount);
-      }
-
-      // Load the counter value when the page loads
-      getCounter();
+      // Load the counter when the page loads
+      window.onload = loadCounter;
+    </script>
     </script>
 </body>
 </html>
