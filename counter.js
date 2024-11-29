@@ -1,5 +1,12 @@
+const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
+
+const app = express();
 const path = './counter.json';
+
+// Enable CORS
+app.use(cors());
 
 // Read counter from file or initialize it
 let counter = 0;
@@ -18,3 +25,5 @@ app.post('/counter', (req, res) => {
   fs.writeFileSync(path, JSON.stringify({ counter }));
   res.json({ counter });
 });
+
+module.exports = app; // Export the app instance
