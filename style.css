@@ -34,21 +34,20 @@ h1 {
 #sw {
     
     margin-top: 20px;  /* Space between h1 and image */
-    transform: translate(calc(20vw),calc(3vw));  /* Moves the image to the left by 10% of the viewport width */
+    transform: translate(calc(35vw),calc(3vw));  /* Moves the image to the left by 10% of the viewport width */
     height: 200px;
     
 }
 
 #counter {
     margin-top: 20px;  /* Space between h1 and image */
-    transform: translate(calc(25vw),calc(20vw));  /* Moves the image to the left by 10% of the viewport width */
     font-size: 15em; /* Larger font size */
     color: #94C6F8; /* Orange color */
     font-family: 'Quantico', sans-serif; /* Font family */
     font-weight: bold; /* Make text bold */
     position: absolute;
-    top: 3%; /* Position relative to the snowflake */
-    left: 23%;
+    top: 5%; /* Position relative to the snowflake */
+    left: 25%;
 }
 
 
