@@ -14,12 +14,13 @@
         <p><span id="counter">0</span></p>
 
         <!-- Button to increase the counter -->
-        <button onclick="increaseCounter()"></button>
+        <button onclick="increaseCounter()">Increase Counter</button>
     </div>
 
     <div class="image">
         <img id="sw" src="/images/snowflake.png" alt="Snowflake emoji" title="I am thinking about you">
     </div>
+
     <script type="module">
       // Import necessary functions from Firebase SDK
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
@@ -46,26 +47,38 @@
       // Optional: Initialize Analytics
       const analytics = getAnalytics(app);
     
-      // Example function to save a counter to Firestore
-      async function updateCounter(counter) {
-        const counterRef = doc(db, "counters", "counter1"); // Create a document reference
-        await setDoc(counterRef, { value: counter });
-      }
-    
-      // Example function to get the counter from Firestore
+      // Function to get counter from Firestore
       async function getCounter() {
         const counterRef = doc(db, "counters", "counter1");
         const docSnap = await getDoc(counterRef);
         
         if (docSnap.exists()) {
           console.log("Current counter value:", docSnap.data().value);
-          return docSnap.data().value;
+          document.getElementById("counter").textContent = docSnap.data().value; // Update UI with stored value
         } else {
-          console.log("No such document!");
-          return 0; // Default to 0 if not found
+          console.log("No such document! Setting to 0.");
+          document.getElementById("counter").textContent = 0; // Default to 0 if no value found
         }
       }
+
+      // Function to update counter in Firestore
+      async function updateCounter(counter) {
+        const counterRef = doc(db, "counters", "counter1");
+        await setDoc(counterRef, { value: counter });
+      }
+
+      // Function to increase counter on button click
+      async function increaseCounter() {
+        let currentCount = parseInt(document.getElementById("counter").textContent);
+        currentCount++;
+        document.getElementById("counter").textContent = currentCount; // Update the UI
+
+        // Save the updated counter to Firestore
+        await updateCounter(currentCount);
+      }
+
+      // Load the counter value when the page loads
+      getCounter();
     </script>
 </body>
 </html>
-
