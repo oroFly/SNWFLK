@@ -41,12 +41,13 @@ h1 {
 
 #counter {
     margin-top: 20px;  /* Space between h1 and image */
+    transform: translate(calc(25vw),calc(20vw));  /* Moves the image to the left by 10% of the viewport width */
     font-size: 15em; /* Larger font size */
     color: #94C6F8; /* Orange color */
     font-family: 'Quantico', sans-serif; /* Font family */
     font-weight: bold; /* Make text bold */
     position: absolute;
-    top: 5%; /* Position relative to the snowflake */
+    top: -15%; /* Position relative to the snowflake */
     left: 25%;
 }
 
