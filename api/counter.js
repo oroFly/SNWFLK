@@ -1,15 +1,29 @@
-// api/counter.js
-let count = 0;
+const express = require('express');
+const fs = require('fs');
+const cors = require('cors');
 
-module.exports = (req, res) => {
-  if (req.method === 'GET') {
-    // Get the current counter value
-    return res.status(200).json({ counter: count });
-  } else if (req.method === 'POST') {
-    // Increase the counter when POST request is made
-    count++;
-    return res.status(200).json({ counter: count });
-  } else {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
-};
+const app = express();
+const path = './counter.json';
+
+// Enable CORS
+app.use(cors());
+
+// Read counter from file or initialize it
+let counter = 0;
+if (fs.existsSync(path)) {
+  counter = JSON.parse(fs.readFileSync(path)).counter || 0;
+}
+
+// Route to get the current counter
+app.get('/counter', (req, res) => {
+  res.json({ counter });
+});
+
+// Route to increment the counter
+app.post('/counter', (req, res) => {
+  counter++;
+  fs.writeFileSync(path, JSON.stringify({ counter }));
+  res.json({ counter });
+});
+
+module.exports = app; // Export the app instance
