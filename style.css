@@ -41,7 +41,7 @@ h1 {
 
 #counter {
     margin-top: 20px;  /* Space between h1 and image */
-    transform: translate(calc(45vw),calc(-10vw));  /* Moves the image to the left by 10% of the viewport width */
+    transform: translate(calc(50vw),calc(5vw));  /* Moves the image to the left by 10% of the viewport width */
     font-size: 10em; /* Larger font size */
     color: #94C6F8; /* Orange color */
     font-family: 'Quantico', sans-serif; /* Font family */
